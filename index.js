@@ -2,6 +2,7 @@ const express = require('express')
 const { MongoClient } = require('mongodb')
 const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
+const { ObjectId } = require('mongodb')
 
 MongoClient.connect('mongodb://localhost/notebook', (err, db) => {
 
@@ -16,14 +17,14 @@ MongoClient.connect('mongodb://localhost/notebook', (err, db) => {
 
   app.post('/api/notes', (req, res) => {
     notes
-    notes.insertOne(req.body, (err, result) => {
-      if (err) {
-        console.error(err)
-        res.sendStatus(500)
-      }
-      console.log(req.body)
-      res.sendStatus(201)
-    })
+      .insertOne(req.body, (err, result) => {
+        if (err) {
+          console.error(err)
+          res.sendStatus(500)
+        }
+        console.log(req.body)
+        res.sendStatus(201)
+      })
   })
   
   app.get('/api/notes', (req, res) => {
@@ -34,6 +35,18 @@ MongoClient.connect('mongodb://localhost/notebook', (err, db) => {
       .catch(err => {
         console.error(err)
         res.sendStatus(500)
+      })
+  })
+
+  app.put('/api/notes/:id', (req, res) => {
+    notes
+      .updateOne({ id: req.params.id }, req.body, (err, result) => {
+        if (err) {
+          console.error(err)
+          res.sendStatus(500)
+        }
+        console.log(req.body)
+        res.sendStatus(202)
       })
   })
 
