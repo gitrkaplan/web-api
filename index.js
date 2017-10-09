@@ -57,8 +57,7 @@ MongoClient.connect('mongodb://localhost/notebook', (err, db) => {
           console.error(err)
           res.sendStatus(500)
         }
-        console.log(req.body)
-        res.sendStatus(202)
+        res.sendStatus(204)
       })
   })
 
