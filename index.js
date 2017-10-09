@@ -25,6 +25,17 @@ MongoClient.connect('mongodb://localhost/notebook', (err, db) => {
       res.sendStatus(201)
     })
   })
+  
+  app.get('/api/notes', (req, res) => {
+    notes
+      .find(req.query)
+      .toArray()
+      .then(list => res.json(list))
+      .catch(err => {
+        console.error(err)
+        res.sendStatus(500)
+      })
+  })
 
   app.listen(3000, () => {
     console.log('Visit http://localhost:3000')
