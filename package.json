@@ -8,6 +8,7 @@
     "lint:js": "eslint ./**/*.js",
     "test": "npm run lint",
     "precommit": "npm test",
+    "start": "node index.js",
     "watch": "nodemon index.js"
   },
   "devDependencies": {

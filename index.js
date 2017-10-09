@@ -25,7 +25,7 @@ MongoClient.connect('mongodb://localhost/notebook', (err, db) => {
       res.sendStatus(201)
     })
   })
-
+  
   app.get('/api/notes', (req, res) => {
     notes
       .find(req.query)
