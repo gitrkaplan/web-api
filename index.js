@@ -16,14 +16,14 @@ MongoClient.connect('mongodb://localhost/notebook', (err, db) => {
 
   app.post('/api/notes', (req, res) => {
     notes
-      .save(req.body, (err, result) => {
-        if (err) {
-          console.error(err)
-          res.sendStatus(500)
-        }
-        console.log(req.body)
-        res.sendStatus(201)
-      })
+    notes.insertOne({note: req.body}, (err, result) => {
+      if (err) {
+        console.error(err)
+        res.sendStatus(500)
+      }
+      console.log(req.body)
+      res.sendStatus(201)
+    })
   })
 
   app.listen(3000, () => {
