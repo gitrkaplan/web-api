@@ -26,7 +26,7 @@ MongoClient.connect('mongodb://localhost/notebook', (err, db) => {
         res.sendStatus(201)
       })
   })
-  
+
   app.get('/api/notes', (req, res) => {
     notes
       .find(req.query)
@@ -47,6 +47,17 @@ MongoClient.connect('mongodb://localhost/notebook', (err, db) => {
         }
         console.log(req.body)
         res.sendStatus(202)
+      })
+  })
+
+  app.delete('/api/notes/:id', (req, res) => {
+    notes
+      .deleteOne({ id: req.params.id }, (err, result) => {
+        if (err) {
+          console.error(err)
+          res.sendStatus(500)
+        }
+        res.sendStatus(204)
       })
   })
 
