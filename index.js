@@ -16,7 +16,7 @@ MongoClient.connect('mongodb://localhost/notebook', (err, db) => {
 
   app.post('/api/notes', (req, res) => {
     notes
-    notes.insertOne({note: req.body}, (err, result) => {
+    notes.insertOne(req.body, (err, result) => {
       if (err) {
         console.error(err)
         res.sendStatus(500)
