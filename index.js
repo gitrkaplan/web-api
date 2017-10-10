@@ -57,6 +57,7 @@ MongoClient.connect('mongodb://localhost/notebook', (err, db) => {
           console.error(err)
           res.sendStatus(500)
         }
+        console.log('Deleted!')
         res.sendStatus(204)
       })
   })
